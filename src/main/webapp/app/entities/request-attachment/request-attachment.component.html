@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span>Request Attachments</span>
+        <button class="btn btn-primary float-right create-request-attachment" [routerLink]="['/', { outlets: { popup: ['request-attachment-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Request Attachment
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="requestAttachments">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>File Name</span></th>
+            <th><span>Uploaded By</span></th>
+            <th><span>Uploaded On</span></th>
+            <th><span>Attachment Type</span></th>
+            <th><span>Request ID</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let requestAttachment of requestAttachments ;trackBy: trackId">
+                <td><a [routerLink]="['../request-attachment', requestAttachment.id ]">{{requestAttachment.id}}</a></td>
+                <td>{{requestAttachment.fileName}}</td>
+                <td>{{requestAttachment.uploadedBy}}</td>
+                <td>{{requestAttachment.uploadedOn | date:'mediumDate'}}</td>
+                <td>{{requestAttachment.attachmentType}}</td>
+                <td>
+                    <div *ngIf="requestAttachment.requestID">
+                        <a [routerLink]="['../request', requestAttachment.requestID?.id ]" >{{requestAttachment.requestID?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../request-attachment', requestAttachment.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'request-attachment/'+ requestAttachment.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'request-attachment/'+ requestAttachment.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

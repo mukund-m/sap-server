@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "definitions",
+            "otherEntityName": "reuestDefinition",
+            "otherEntityRelationshipName": "fieldDefinition"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "definition",
+            "otherEntityName": "definitionConfig",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fieldType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "key",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "placeHolder",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mandatory",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180308190933",
+    "entityTableName": "field_definition",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

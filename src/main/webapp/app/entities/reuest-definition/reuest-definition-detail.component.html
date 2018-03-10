@@ -1,0 +1,37 @@
+
+<div *ngIf="reuestDefinition">
+    <h2><span>Reuest Definition</span> {{reuestDefinition.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Value</span></dt>
+        <dd>
+            <span>{{reuestDefinition.value}}</span>
+        </dd>
+        <dt><span>Request</span></dt>
+        <dd>
+            <div *ngIf="reuestDefinition.request">
+                <a [routerLink]="['/request', reuestDefinition.request?.id]">{{reuestDefinition.request?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Field Definition</span></dt>
+        <dd>
+            <div *ngIf="reuestDefinition.fieldDefinition">
+                <a [routerLink]="['/field-definition', reuestDefinition.fieldDefinition?.id]">{{reuestDefinition.fieldDefinition?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'reuest-definition/'+ reuestDefinition.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

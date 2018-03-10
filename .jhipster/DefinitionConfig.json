@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "fieldConfigs",
+            "otherEntityName": "fieldDefinition",
+            "otherEntityRelationshipName": "definition"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "reqType",
+            "otherEntityName": "requestTypeDefConfig",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "definition"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "defName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180308190931",
+    "entityTableName": "definition_config",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

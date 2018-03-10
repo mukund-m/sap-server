@@ -1,0 +1,47 @@
+
+<div *ngIf="fieldDefinition">
+    <h2><span>Field Definition</span> {{fieldDefinition.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Field Type</span></dt>
+        <dd>
+            <span>{{fieldDefinition.fieldType}}</span>
+        </dd>
+        <dt><span>Key</span></dt>
+        <dd>
+            <span>{{fieldDefinition.key}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{fieldDefinition.name}}</span>
+        </dd>
+        <dt><span>Place Holder</span></dt>
+        <dd>
+            <span>{{fieldDefinition.placeHolder}}</span>
+        </dd>
+        <dt><span>Mandatory</span></dt>
+        <dd>
+            <span>{{fieldDefinition.mandatory}}</span>
+        </dd>
+        <dt><span>Definition</span></dt>
+        <dd>
+            <div *ngIf="fieldDefinition.definition">
+                <a [routerLink]="['/definition-config', fieldDefinition.definition?.id]">{{fieldDefinition.definition?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'field-definition/'+ fieldDefinition.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

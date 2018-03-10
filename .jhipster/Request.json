@@ -1,0 +1,60 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "attachments",
+            "otherEntityName": "requestAttachment",
+            "otherEntityRelationshipName": "requestID"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "definitions",
+            "otherEntityName": "reuestDefinition",
+            "otherEntityRelationshipName": "request"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180308190929",
+    "entityTableName": "request",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

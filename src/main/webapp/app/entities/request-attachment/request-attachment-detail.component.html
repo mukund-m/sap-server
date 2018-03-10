@@ -1,0 +1,43 @@
+
+<div *ngIf="requestAttachment">
+    <h2><span>Request Attachment</span> {{requestAttachment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>File Name</span></dt>
+        <dd>
+            <span>{{requestAttachment.fileName}}</span>
+        </dd>
+        <dt><span>Uploaded By</span></dt>
+        <dd>
+            <span>{{requestAttachment.uploadedBy}}</span>
+        </dd>
+        <dt><span>Uploaded On</span></dt>
+        <dd>
+            <span>{{requestAttachment.uploadedOn | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Attachment Type</span></dt>
+        <dd>
+            <span>{{requestAttachment.attachmentType}}</span>
+        </dd>
+        <dt><span>Request ID</span></dt>
+        <dd>
+            <div *ngIf="requestAttachment.requestID">
+                <a [routerLink]="['/request', requestAttachment.requestID?.id]">{{requestAttachment.requestID?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'request-attachment/'+ requestAttachment.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

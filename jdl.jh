@@ -1,0 +1,68 @@
+entity Request {
+	title String,
+    type String,
+    startDate LocalDate,
+    duration String,
+    status String,
+    createdOn LocalDate,
+    modifiedOn LocalDate,
+    createdBy String,
+    modifiedBy String
+}
+
+entity RequestAttachment {
+	fileName String,
+    uploadedBy String,
+    uploadedOn LocalDate,
+    attachmentType String
+}
+
+
+entity DefinitionConfig {
+	defName String
+}
+
+entity RequestTypeDefConfig {
+	requestType String
+}
+
+entity FieldDefinition {
+	fieldType String,
+    key String,
+    name String,
+    placeHolder String,
+    mandatory Boolean
+}
+
+
+entity ReuestDefinition {
+	value String
+}
+
+relationship OneToMany {
+	Request{attachments} to RequestAttachment{requestID}
+}
+
+relationship OneToMany {
+	Request{definitions} to ReuestDefinition{request}
+}
+
+relationship OneToMany {
+	FieldDefinition{definitions} to ReuestDefinition{fieldDefinition}
+}
+
+
+relationship OneToOne {
+RequestTypeDefConfig{Definition} to DefinitionConfig{reqType}
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	DefinitionConfig{fieldConfigs} to FieldDefinition{Definition}
+}
+
+
+
+service all with serviceImpl
+

@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span>Field Definitions</span>
+        <button class="btn btn-primary float-right create-field-definition" [routerLink]="['/', { outlets: { popup: ['field-definition-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Field Definition
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="fieldDefinitions">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Field Type</span></th>
+            <th><span>Key</span></th>
+            <th><span>Name</span></th>
+            <th><span>Place Holder</span></th>
+            <th><span>Mandatory</span></th>
+            <th><span>Definition</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let fieldDefinition of fieldDefinitions ;trackBy: trackId">
+                <td><a [routerLink]="['../field-definition', fieldDefinition.id ]">{{fieldDefinition.id}}</a></td>
+                <td>{{fieldDefinition.fieldType}}</td>
+                <td>{{fieldDefinition.key}}</td>
+                <td>{{fieldDefinition.name}}</td>
+                <td>{{fieldDefinition.placeHolder}}</td>
+                <td>{{fieldDefinition.mandatory}}</td>
+                <td>
+                    <div *ngIf="fieldDefinition.definition">
+                        <a [routerLink]="['../definition-config', fieldDefinition.definition?.id ]" >{{fieldDefinition.definition?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../field-definition', fieldDefinition.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'field-definition/'+ fieldDefinition.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'field-definition/'+ fieldDefinition.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

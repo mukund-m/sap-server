@@ -1,0 +1,30 @@
+entity DefinitionConfig {
+	defName String
+}
+
+entity RequestTypeDefConfig {
+	requestType String
+}
+
+entity FieldDefinition {
+	fieldType String,
+    key String,
+    name String,
+    placeHolder String,
+    mandatory Boolean
+}
+
+relationship OneToOne {
+RequestTypeDefConfig{Definition} to DefinitionConfig{reqType}
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	DefinitionConfig{fieldConfigs} to FieldDefinition{Definition}
+}
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+angularSuffix * with mySuffix
