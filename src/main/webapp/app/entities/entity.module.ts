@@ -6,6 +6,7 @@ import { ChangeAppServerDefinitionConfigModule } from './definition-config/defin
 import { ChangeAppServerRequestTypeDefConfigModule } from './request-type-def-config/request-type-def-config.module';
 import { ChangeAppServerFieldDefinitionModule } from './field-definition/field-definition.module';
 import { ChangeAppServerReuestDefinitionModule } from './reuest-definition/reuest-definition.module';
+import { ChangeAppServerFieldOptionDefinitionModule } from './field-option-definition/field-option-definition.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ChangeAppServerReuestDefinitionModule } from './reuest-definition/reues
         ChangeAppServerRequestTypeDefConfigModule,
         ChangeAppServerFieldDefinitionModule,
         ChangeAppServerReuestDefinitionModule,
+        ChangeAppServerFieldOptionDefinitionModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

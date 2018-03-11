@@ -1,6 +1,6 @@
 {
-  "name": "ChangeApp",
-  "short_name": "ChangeApp",
+  "name": "ChangeAppServer",
+  "short_name": "ChangeAppServer",
   "icons": [
       {
           "src": "./content/images/logo-jhipster.png",

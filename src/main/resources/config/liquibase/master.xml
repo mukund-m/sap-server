@@ -11,10 +11,12 @@
     <include file="classpath:config/liquibase/changelog/20180308190932_added_entity_RequestTypeDefConfig.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190933_added_entity_FieldDefinition.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190934_added_entity_ReuestDefinition.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180311065646_added_entity_FieldOptionDefinition.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20180308190930_added_entity_constraints_RequestAttachment.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190932_added_entity_constraints_RequestTypeDefConfig.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190933_added_entity_constraints_FieldDefinition.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190934_added_entity_constraints_ReuestDefinition.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180311065646_added_entity_constraints_FieldOptionDefinition.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

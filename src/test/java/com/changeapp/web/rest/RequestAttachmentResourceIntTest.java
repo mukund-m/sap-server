@@ -77,7 +77,7 @@ public class RequestAttachmentResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        RequestAttachmentResource requestAttachmentResource = new RequestAttachmentResource(requestAttachmentService);
+        RequestAttachmentResource requestAttachmentResource = new RequestAttachmentResource(requestAttachmentService, null);
         this.restRequestAttachmentMockMvc = MockMvcBuilders.standaloneSetup(requestAttachmentResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

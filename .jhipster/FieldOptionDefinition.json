@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "fieldDefinition",
+            "otherEntityName": "fieldDefinition",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "key",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "value",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180311065646",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "field_option_definition",
+    "pagination": "no"
+}
