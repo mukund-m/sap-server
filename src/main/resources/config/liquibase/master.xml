@@ -5,6 +5,10 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    
+    <include file="classpath:config/liquibase/changelog/20180311071633_added_entity_FieldChoiceDefinition.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180311071633_added_entity_constraints_FieldChoiceDefinition.xml" relativeToChangelogFile="false"/>
+    
     <include file="classpath:config/liquibase/changelog/20180308190929_added_entity_Request.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190930_added_entity_RequestAttachment.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190931_added_entity_DefinitionConfig.xml" relativeToChangelogFile="false"/>
@@ -12,11 +16,24 @@
     <include file="classpath:config/liquibase/changelog/20180308190933_added_entity_FieldDefinition.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190934_added_entity_ReuestDefinition.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180311065646_added_entity_FieldOptionDefinition.xml" relativeToChangelogFile="false"/>
+    
+    <include file="classpath:config/liquibase/changelog/20180324115432_added_entity_RefCodeDetails.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180325151249_added_entity_AttachmentType.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180325153336_added_entity_TaskStructureConfig.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180325153732_added_entity_PeopleRole.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180325153950_added_entity_PeopleRoleUserMapping.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180328172908_added_entity_TaskQuestionInstance.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20180308190930_added_entity_constraints_RequestAttachment.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190932_added_entity_constraints_RequestTypeDefConfig.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190933_added_entity_constraints_FieldDefinition.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180308190934_added_entity_constraints_ReuestDefinition.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20180311065646_added_entity_constraints_FieldOptionDefinition.xml" relativeToChangelogFile="false"/>
+    
+    <include file="classpath:config/liquibase/changelog/20180325151249_added_entity_constraints_AttachmentType.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180325153336_added_entity_constraints_TaskStructureConfig.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180325153732_added_entity_constraints_PeopleRole.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180325153950_added_entity_constraints_PeopleRoleUserMapping.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180328172908_added_entity_constraints_TaskQuestionInstance.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

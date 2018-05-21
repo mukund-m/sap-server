@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span>Task Question Instances</span>
+        <button class="btn btn-primary float-right create-task-question-instance" [routerLink]="['/', { outlets: { popup: ['task-question-instance-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Task Question Instance
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="taskQuestionInstances">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Sort In Parent ID</span></th>
+            <th><span>Due Date</span></th>
+            <th><span>Notified Date</span></th>
+            <th><span>Completed Date</span></th>
+            <th><span>Status</span></th>
+            <th><span>Question Response</span></th>
+            <th><span>Parent ID</span></th>
+            <th><span>Definition ID</span></th>
+            <th><span>Request</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let taskQuestionInstance of taskQuestionInstances ;trackBy: trackId">
+                <td><a [routerLink]="['../task-question-instance', taskQuestionInstance.id ]">{{taskQuestionInstance.id}}</a></td>
+                <td>{{taskQuestionInstance.sortInParentID}}</td>
+                <td>{{taskQuestionInstance.dueDate | date:'mediumDate'}}</td>
+                <td>{{taskQuestionInstance.notifiedDate | date:'mediumDate'}}</td>
+                <td>{{taskQuestionInstance.completedDate | date:'mediumDate'}}</td>
+                <td>{{taskQuestionInstance.status}}</td>
+                <td>{{taskQuestionInstance.questionResponse}}</td>
+                <td>{{taskQuestionInstance.parentID}}</td>
+                <td>{{taskQuestionInstance.definitionID}}</td>
+                <td>
+                    <div *ngIf="taskQuestionInstance.request">
+                        <a [routerLink]="['../request', taskQuestionInstance.request?.id ]" >{{taskQuestionInstance.request?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../task-question-instance', taskQuestionInstance.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'task-question-instance/'+ taskQuestionInstance.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'task-question-instance/'+ taskQuestionInstance.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -7,6 +7,13 @@ import { ChangeAppServerRequestTypeDefConfigModule } from './request-type-def-co
 import { ChangeAppServerFieldDefinitionModule } from './field-definition/field-definition.module';
 import { ChangeAppServerReuestDefinitionModule } from './reuest-definition/reuest-definition.module';
 import { ChangeAppServerFieldOptionDefinitionModule } from './field-option-definition/field-option-definition.module';
+import { ChangeAppServerFieldChoiceDefinitionModule } from './field-choice-definition/field-choice-definition.module';
+import { ChangeAppServerRefCodeDetailsModule } from './ref-code-details/ref-code-details.module';
+import { ChangeAppServerAttachmentTypeModule } from './attachment-type/attachment-type.module';
+import { ChangeAppServerTaskStructureConfigModule } from './task-structure-config/task-structure-config.module';
+import { ChangeAppServerPeopleRoleModule } from './people-role/people-role.module';
+import { ChangeAppServerPeopleRoleUserMappingModule } from './people-role-user-mapping/people-role-user-mapping.module';
+import { ChangeAppServerTaskQuestionInstanceModule } from './task-question-instance/task-question-instance.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -18,6 +25,13 @@ import { ChangeAppServerFieldOptionDefinitionModule } from './field-option-defin
         ChangeAppServerFieldDefinitionModule,
         ChangeAppServerReuestDefinitionModule,
         ChangeAppServerFieldOptionDefinitionModule,
+        ChangeAppServerFieldChoiceDefinitionModule,
+        ChangeAppServerRefCodeDetailsModule,
+        ChangeAppServerAttachmentTypeModule,
+        ChangeAppServerTaskStructureConfigModule,
+        ChangeAppServerPeopleRoleModule,
+        ChangeAppServerPeopleRoleUserMappingModule,
+        ChangeAppServerTaskQuestionInstanceModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

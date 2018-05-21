@@ -1,0 +1,50 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "request",
+            "otherEntityName": "request",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "sortInParentID",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dueDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "notifiedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "completedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "questionResponse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "parentID",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "definitionID",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180328172908",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "task_question_instance",
+    "pagination": "no"
+}

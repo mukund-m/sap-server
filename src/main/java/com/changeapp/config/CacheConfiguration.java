@@ -51,6 +51,14 @@ public class CacheConfiguration {
             cm.createCache(com.changeapp.domain.FieldDefinition.class.getName() + ".definitions", jcacheConfiguration);
             cm.createCache(com.changeapp.domain.ReuestDefinition.class.getName(), jcacheConfiguration);
             cm.createCache(com.changeapp.domain.FieldOptionDefinition.class.getName(), jcacheConfiguration);
+            cm.createCache(com.changeapp.domain.FieldChoiceDefinition.class.getName(), jcacheConfiguration);
+            cm.createCache(com.changeapp.domain.FieldDefinition.class.getName() + ".choices", jcacheConfiguration);
+            cm.createCache(com.changeapp.domain.RefCodeDetails.class.getName(), jcacheConfiguration);
+            cm.createCache(com.changeapp.domain.AttachmentType.class.getName(), jcacheConfiguration);
+            cm.createCache(com.changeapp.domain.TaskStructureConfig.class.getName(), jcacheConfiguration);
+            cm.createCache(com.changeapp.domain.PeopleRole.class.getName(), jcacheConfiguration);
+            cm.createCache(com.changeapp.domain.PeopleRoleUserMapping.class.getName(), jcacheConfiguration);
+            cm.createCache(com.changeapp.domain.TaskQuestionInstance.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

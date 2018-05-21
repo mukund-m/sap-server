@@ -1,0 +1,64 @@
+<div>
+    <h2>
+        <span>Attachment Types</span>
+        <button class="btn btn-primary float-right create-attachment-type" [routerLink]="['/', { outlets: { popup: ['attachment-type-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Attachment Type
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="attachmentTypes">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Type Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Request Type Def Config</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let attachmentType of attachmentTypes ;trackBy: trackId">
+                <td><a [routerLink]="['../attachment-type', attachmentType.id ]">{{attachmentType.id}}</a></td>
+                <td>{{attachmentType.typeName}}</td>
+                <td>{{attachmentType.description}}</td>
+                <td>
+                    <div *ngIf="attachmentType.requestTypeDefConfig">
+                        <a [routerLink]="['../request-type-def-config', attachmentType.requestTypeDefConfig?.id ]" >{{attachmentType.requestTypeDefConfig?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../attachment-type', attachmentType.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'attachment-type/'+ attachmentType.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'attachment-type/'+ attachmentType.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

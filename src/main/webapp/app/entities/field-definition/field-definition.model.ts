@@ -10,6 +10,7 @@ export class FieldDefinition implements BaseEntity {
         public mandatory?: boolean,
         public definitions?: BaseEntity[],
         public definition?: BaseEntity,
+        public choices?: BaseEntity[],
     ) {
         this.mandatory = false;
     }

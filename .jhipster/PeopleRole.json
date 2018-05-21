@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "requestTypeDefConfig",
+            "otherEntityName": "requestTypeDefConfig",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "roleName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180325153732",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "people_role",
+    "pagination": "no"
+}

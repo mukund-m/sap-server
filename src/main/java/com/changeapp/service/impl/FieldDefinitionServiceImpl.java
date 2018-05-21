@@ -46,7 +46,11 @@ public class FieldDefinitionServiceImpl implements FieldDefinitionService{
     @Transactional(readOnly = true)
     public List<FieldDefinition> findAll() {
         log.debug("Request to get all FieldDefinitions");
-        return fieldDefinitionRepository.findAll();
+        List<FieldDefinition> list = fieldDefinitionRepository.findAll();
+        for(FieldDefinition def: list) {
+        	def.setChoices(def.getChoices());
+        }
+        return list;
     }
 
     /**
@@ -59,7 +63,9 @@ public class FieldDefinitionServiceImpl implements FieldDefinitionService{
     @Transactional(readOnly = true)
     public FieldDefinition findOne(Long id) {
         log.debug("Request to get FieldDefinition : {}", id);
-        return fieldDefinitionRepository.findOne(id);
+        FieldDefinition def =  fieldDefinitionRepository.findOne(id);
+        def.setChoices(def.getChoices());
+        return def;
     }
 
     /**

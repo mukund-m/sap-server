@@ -1,0 +1,54 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "requestTypeDefConfig",
+            "otherEntityName": "requestTypeDefConfig",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "parentID",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sortInParentID",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "questionType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "questionAnswerListID",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "peopleRole",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "order",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "instruction",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180325153336",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "task_structure_config",
+    "pagination": "no"
+}

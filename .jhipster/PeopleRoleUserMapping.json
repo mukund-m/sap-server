@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "requestTypeDefConfig",
+            "otherEntityName": "requestTypeDefConfig",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "peopleRole",
+            "otherEntityName": "peopleRole",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "userID",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180325153950",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "people_role_user_mapping",
+    "pagination": "no"
+}

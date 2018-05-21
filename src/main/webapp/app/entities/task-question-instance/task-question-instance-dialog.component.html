@@ -1,0 +1,87 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTaskQuestionInstanceLabel">Create or edit a Task Question Instance</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!taskQuestionInstance.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="taskQuestionInstance.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_sortInParentID">Sort In Parent ID</label>
+            <input type="text" class="form-control" name="sortInParentID" id="field_sortInParentID"
+                [(ngModel)]="taskQuestionInstance.sortInParentID"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dueDate">Due Date</label>
+            <div class="input-group">
+                <input id="field_dueDate" type="text" class="form-control" name="dueDate" ngbDatepicker  #dueDateDp="ngbDatepicker" [(ngModel)]="taskQuestionInstance.dueDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dueDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_notifiedDate">Notified Date</label>
+            <div class="input-group">
+                <input id="field_notifiedDate" type="text" class="form-control" name="notifiedDate" ngbDatepicker  #notifiedDateDp="ngbDatepicker" [(ngModel)]="taskQuestionInstance.notifiedDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="notifiedDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_completedDate">Completed Date</label>
+            <div class="input-group">
+                <input id="field_completedDate" type="text" class="form-control" name="completedDate" ngbDatepicker  #completedDateDp="ngbDatepicker" [(ngModel)]="taskQuestionInstance.completedDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="completedDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                [(ngModel)]="taskQuestionInstance.status"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_questionResponse">Question Response</label>
+            <input type="text" class="form-control" name="questionResponse" id="field_questionResponse"
+                [(ngModel)]="taskQuestionInstance.questionResponse"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_parentID">Parent ID</label>
+            <input type="number" class="form-control" name="parentID" id="field_parentID"
+                [(ngModel)]="taskQuestionInstance.parentID"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_definitionID">Definition ID</label>
+            <input type="number" class="form-control" name="definitionID" id="field_definitionID"
+                [(ngModel)]="taskQuestionInstance.definitionID"  />
+        </div>
+
+        <div class="form-group">
+            <label for="field_request">Request</label>
+            <select class="form-control" id="field_request" name="request" [(ngModel)]="taskQuestionInstance.request" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="requestOption.id === taskQuestionInstance.request?.id ? taskQuestionInstance.request : requestOption" *ngFor="let requestOption of requests; trackBy: trackRequestById">{{requestOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

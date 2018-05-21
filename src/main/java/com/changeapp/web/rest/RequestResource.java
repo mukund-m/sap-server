@@ -1,20 +1,44 @@
 package com.changeapp.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.changeapp.domain.Request;
-import com.changeapp.service.RequestService;
-import com.changeapp.web.rest.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.changeapp.domain.PeopleRoleUserMapping;
+import com.changeapp.domain.Request;
+import com.changeapp.domain.Task;
+import com.changeapp.domain.TaskQuestionInstance;
+import com.changeapp.domain.TaskStructureConfig;
+import com.changeapp.domain.TreeNode;
+import com.changeapp.domain.User;
+import com.changeapp.repository.TaskStructureConfigRepository;
+import com.changeapp.security.SecurityUtils;
+import com.changeapp.service.PeopleRoleService;
+import com.changeapp.service.PeopleRoleUserMappingService;
+import com.changeapp.service.RequestService;
+import com.changeapp.service.TaskQuestionInstanceService;
+import com.changeapp.service.UserService;
+import com.changeapp.web.rest.util.HeaderUtil;
+import com.codahale.metrics.annotation.Timed;
 
-import java.util.List;
-import java.util.Optional;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing Request.
@@ -28,9 +52,18 @@ public class RequestResource {
     private static final String ENTITY_NAME = "request";
 
     private final RequestService requestService;
+    private final UserService userService;
+    private final PeopleRoleUserMappingService peopleRoleUserMappingService;
+    private final TaskQuestionInstanceService taskQuestionInstanceService;
+    private final TaskStructureConfigRepository taskStructureConfigRepository;
 
-    public RequestResource(RequestService requestService) {
+    public RequestResource(RequestService requestService, UserService userService, PeopleRoleUserMappingService peopleRoleUserMappingService,
+    		TaskQuestionInstanceService taskQuestionInstanceService, TaskStructureConfigRepository taskStructureConfigRepository) {
         this.requestService = requestService;
+        this.userService = userService;
+        this.taskQuestionInstanceService = taskQuestionInstanceService;
+        this.peopleRoleUserMappingService = peopleRoleUserMappingService;
+        this.taskStructureConfigRepository = taskStructureConfigRepository;
     }
 
     /**
@@ -47,6 +80,9 @@ public class RequestResource {
         if (request.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new request cannot already have an ID")).body(null);
         }
+        request.setCreatedBy(SecurityUtils.getCurrentUserLogin());
+        request.setCreatedOn(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        request.setStatus("SAVED");
         Request result = requestService.save(request);
         return ResponseEntity.created(new URI("/api/requests/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -114,4 +150,98 @@ public class RequestResource {
         requestService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    @PostMapping("/requests/submit")
+    public ResponseEntity<Request> submitRequest(@RequestBody HashMap<String, Long> request) {
+    	Long requestID = request.get("requestId");
+    	Request actualRequest = this.requestService.findOne(requestID);
+    	actualRequest.setStatus("SUBMITTED");
+    	this.requestService.save(actualRequest);
+    	this.requestService.createInitialTasks(actualRequest);
+    	
+    	return null;
+    }
+    
+    @PostMapping("/requests/tasks")
+    public List<TreeNode> getTasksForRequest(@RequestBody HashMap<String, Long> request) {
+    	Long requestID = request.get("requestId");
+    	Request actualRequest = this.requestService.findOne(requestID);
+    	return this.requestService.getTasksForRequest(actualRequest);
+    	
+    }
+    
+    
+    
+    @GetMapping("/getMyTasks")
+    public List<Task> getMyTasks() {
+    	String userName = SecurityUtils.getCurrentUserLogin();
+    	User user = this.userService.getUserWithAuthoritiesByLogin(userName).orElse(null);
+    	Long role = 0L;
+    	for(PeopleRoleUserMapping peopleRoleUserMapping: this.peopleRoleUserMappingService.findAll()) {
+    		if(peopleRoleUserMapping.getUserID().equals(user.getLogin())) {
+    			role = peopleRoleUserMapping.getId();
+    		}
+    	}
+    	//get all tasks for the role
+    	List<Task> tasks = this.requestService.getMyTasks(role);
+    	return tasks;
+    }
+    
+    @GetMapping("/getMyRequests")
+    public List<Request> getMyRequests() {
+    	String userName = SecurityUtils.getCurrentUserLogin();
+    	List<Request> requests = new ArrayList<>();
+    	for(Request request: this.requestService.findAll()) {
+    		if(request.getCreatedBy().equals(userName)) {
+    			requests.add(request);
+    		}
+    	}
+    	return requests;
+    }
+    
+    @GetMapping("/getTask/{id}")
+    public Task getTask(@PathVariable("id") Long id) {
+    	return this.requestService.getTask(id);
+    }
+    @PostMapping("/requests/saveTask/{id}")
+    public boolean saveTask(@PathVariable("id") Long taskId, @RequestBody HashMap<Long, String> map) {
+    	this.requestService.saveTaskQuestions(taskId, map);
+    	
+    	
+    	return true;
+    }
+    
+    @PostMapping("/requests/approveTask/{id}")
+    public boolean approveTask(@PathVariable("id") Long taskId, @RequestBody HashMap<Long, String> map) {
+    	TaskQuestionInstance instance = this.taskQuestionInstanceService.findOne(taskId);
+    	
+    	instance.completedDate(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+    	instance.setStatus("APPROVED");
+    	this.taskQuestionInstanceService.save(instance);
+    	TaskStructureConfig taskStructureConfig = this.taskStructureConfigRepository.findOne(instance.getDefinitionID());
+    	if(taskStructureConfig.getParentID() != null) {
+    		TaskStructureConfig parent = this.taskStructureConfigRepository.findOne(Long.valueOf(taskStructureConfig.getParentID().toString()));
+    		if(parent.getOrder().equals(1)) {
+    			this.requestService.createRemainingTasks(instance.getRequest());
+    		}
+    	}
+    	
+    	return true;
+
+    }
+    
+    @PostMapping("/requests/rejectTask/{id}")
+    public boolean rejectTask(@PathVariable("id") Long taskId, @RequestBody HashMap<Long, String> map) {
+    	TaskQuestionInstance instance = this.taskQuestionInstanceService.findOne(taskId);
+    	
+    	instance.completedDate(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+    	instance.setStatus("REJECTED");
+    	this.taskQuestionInstanceService.save(instance);
+    	
+    	
+    	return true;
+
+    }
+    
+    
 }

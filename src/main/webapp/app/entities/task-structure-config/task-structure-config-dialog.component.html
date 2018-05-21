@@ -1,0 +1,77 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTaskStructureConfigLabel">Create or edit a Task Structure Config</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!taskStructureConfig.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="taskStructureConfig.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_parentID">Parent ID</label>
+            <input type="number" class="form-control" name="parentID" id="field_parentID"
+                [(ngModel)]="taskStructureConfig.parentID"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_sortInParentID">Sort In Parent ID</label>
+            <input type="text" class="form-control" name="sortInParentID" id="field_sortInParentID"
+                [(ngModel)]="taskStructureConfig.sortInParentID"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="taskStructureConfig.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="taskStructureConfig.type"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_questionType">Question Type</label>
+            <input type="text" class="form-control" name="questionType" id="field_questionType"
+                [(ngModel)]="taskStructureConfig.questionType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_questionAnswerListID">Question Answer List ID</label>
+            <input type="number" class="form-control" name="questionAnswerListID" id="field_questionAnswerListID"
+                [(ngModel)]="taskStructureConfig.questionAnswerListID"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_peopleRole">People Role</label>
+            <input type="number" class="form-control" name="peopleRole" id="field_peopleRole"
+                [(ngModel)]="taskStructureConfig.peopleRole"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_order">Order</label>
+            <input type="number" class="form-control" name="order" id="field_order"
+                [(ngModel)]="taskStructureConfig.order"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_instruction">Instruction</label>
+            <input type="text" class="form-control" name="instruction" id="field_instruction"
+                [(ngModel)]="taskStructureConfig.instruction"  />
+        </div>
+
+        <div class="form-group">
+            <label for="field_requestTypeDefConfig">Request Type Def Config</label>
+            <select class="form-control" id="field_requestTypeDefConfig" name="requestTypeDefConfig" [(ngModel)]="taskStructureConfig.requestTypeDefConfig" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="requestTypeDefConfigOption.id === taskStructureConfig.requestTypeDefConfig?.id ? taskStructureConfig.requestTypeDefConfig : requestTypeDefConfigOption" *ngFor="let requestTypeDefConfigOption of requesttypedefconfigs; trackBy: trackRequestTypeDefConfigById">{{requestTypeDefConfigOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -2,6 +2,7 @@ package com.changeapp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.changeapp.domain.ReuestDefinition;
+import com.changeapp.service.RequestService;
 import com.changeapp.service.ReuestDefinitionService;
 import com.changeapp.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -15,6 +16,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing ReuestDefinition.
@@ -28,9 +30,11 @@ public class ReuestDefinitionResource {
     private static final String ENTITY_NAME = "reuestDefinition";
 
     private final ReuestDefinitionService reuestDefinitionService;
+    private final RequestService requestService;
 
-    public ReuestDefinitionResource(ReuestDefinitionService reuestDefinitionService) {
+    public ReuestDefinitionResource(ReuestDefinitionService reuestDefinitionService, RequestService requestService) {
         this.reuestDefinitionService = reuestDefinitionService;
+        this.requestService = requestService;
     }
 
     /**
@@ -112,6 +116,18 @@ public class ReuestDefinitionResource {
     public ResponseEntity<Void> deleteReuestDefinition(@PathVariable Long id) {
         log.debug("REST request to delete ReuestDefinition : {}", id);
         reuestDefinitionService.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    
+    @DeleteMapping("/requestDef/{id}")
+    @Timed
+    public ResponseEntity<Void> deleteDefinitionForRequest(@PathVariable Long id) {
+        log.debug("REST request to delete ReuestDefinition : {}", id);
+        Set<ReuestDefinition> list = this.requestService.findOne(id).getDefinitions();
+        for(ReuestDefinition def: list) {
+        	this.reuestDefinitionService.delete(def.getId());
+        }
+        
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

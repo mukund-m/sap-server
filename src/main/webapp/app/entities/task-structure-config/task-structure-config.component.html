@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Task Structure Configs</span>
+        <button class="btn btn-primary float-right create-task-structure-config" [routerLink]="['/', { outlets: { popup: ['task-structure-config-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Task Structure Config
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="taskStructureConfigs">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Parent ID</span></th>
+            <th><span>Sort In Parent ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Type</span></th>
+            <th><span>Question Type</span></th>
+            <th><span>Question Answer List ID</span></th>
+            <th><span>People Role</span></th>
+            <th><span>Order</span></th>
+            <th><span>Instruction</span></th>
+            <th><span>Request Type Def Config</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let taskStructureConfig of taskStructureConfigs ;trackBy: trackId">
+                <td><a [routerLink]="['../task-structure-config', taskStructureConfig.id ]">{{taskStructureConfig.id}}</a></td>
+                <td>{{taskStructureConfig.parentID}}</td>
+                <td>{{taskStructureConfig.sortInParentID}}</td>
+                <td>{{taskStructureConfig.name}}</td>
+                <td>{{taskStructureConfig.type}}</td>
+                <td>{{taskStructureConfig.questionType}}</td>
+                <td>{{taskStructureConfig.questionAnswerListID}}</td>
+                <td>{{taskStructureConfig.peopleRole}}</td>
+                <td>{{taskStructureConfig.order}}</td>
+                <td>{{taskStructureConfig.instruction}}</td>
+                <td>
+                    <div *ngIf="taskStructureConfig.requestTypeDefConfig">
+                        <a [routerLink]="['../request-type-def-config', taskStructureConfig.requestTypeDefConfig?.id ]" >{{taskStructureConfig.requestTypeDefConfig?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../task-structure-config', taskStructureConfig.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'task-structure-config/'+ taskStructureConfig.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'task-structure-config/'+ taskStructureConfig.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+
+<div *ngIf="taskQuestionInstance">
+    <h2><span>Task Question Instance</span> {{taskQuestionInstance.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Sort In Parent ID</span></dt>
+        <dd>
+            <span>{{taskQuestionInstance.sortInParentID}}</span>
+        </dd>
+        <dt><span>Due Date</span></dt>
+        <dd>
+            <span>{{taskQuestionInstance.dueDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Notified Date</span></dt>
+        <dd>
+            <span>{{taskQuestionInstance.notifiedDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Completed Date</span></dt>
+        <dd>
+            <span>{{taskQuestionInstance.completedDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{taskQuestionInstance.status}}</span>
+        </dd>
+        <dt><span>Question Response</span></dt>
+        <dd>
+            <span>{{taskQuestionInstance.questionResponse}}</span>
+        </dd>
+        <dt><span>Parent ID</span></dt>
+        <dd>
+            <span>{{taskQuestionInstance.parentID}}</span>
+        </dd>
+        <dt><span>Definition ID</span></dt>
+        <dd>
+            <span>{{taskQuestionInstance.definitionID}}</span>
+        </dd>
+        <dt><span>Request</span></dt>
+        <dd>
+            <div *ngIf="taskQuestionInstance.request">
+                <a [routerLink]="['/request', taskQuestionInstance.request?.id]">{{taskQuestionInstance.request?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'task-question-instance/'+ taskQuestionInstance.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

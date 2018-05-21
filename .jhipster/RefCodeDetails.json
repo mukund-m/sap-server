@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "category",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "refCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "refValue",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180324115432",
+    "entityTableName": "ref_code_details",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

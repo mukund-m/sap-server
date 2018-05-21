@@ -1,0 +1,6 @@
+entity RefCodeDetails {
+	category String,
+    refCode String,
+    refValue String
+}
+

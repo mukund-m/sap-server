@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "requestTypeDefConfig",
+            "otherEntityName": "requestTypeDefConfig",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "typeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180325151249",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "attachment_type",
+    "pagination": "no"
+}

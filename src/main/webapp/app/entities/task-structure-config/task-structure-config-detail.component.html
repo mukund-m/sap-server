@@ -1,0 +1,63 @@
+
+<div *ngIf="taskStructureConfig">
+    <h2><span>Task Structure Config</span> {{taskStructureConfig.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Parent ID</span></dt>
+        <dd>
+            <span>{{taskStructureConfig.parentID}}</span>
+        </dd>
+        <dt><span>Sort In Parent ID</span></dt>
+        <dd>
+            <span>{{taskStructureConfig.sortInParentID}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{taskStructureConfig.name}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{taskStructureConfig.type}}</span>
+        </dd>
+        <dt><span>Question Type</span></dt>
+        <dd>
+            <span>{{taskStructureConfig.questionType}}</span>
+        </dd>
+        <dt><span>Question Answer List ID</span></dt>
+        <dd>
+            <span>{{taskStructureConfig.questionAnswerListID}}</span>
+        </dd>
+        <dt><span>People Role</span></dt>
+        <dd>
+            <span>{{taskStructureConfig.peopleRole}}</span>
+        </dd>
+        <dt><span>Order</span></dt>
+        <dd>
+            <span>{{taskStructureConfig.order}}</span>
+        </dd>
+        <dt><span>Instruction</span></dt>
+        <dd>
+            <span>{{taskStructureConfig.instruction}}</span>
+        </dd>
+        <dt><span>Request Type Def Config</span></dt>
+        <dd>
+            <div *ngIf="taskStructureConfig.requestTypeDefConfig">
+                <a [routerLink]="['/request-type-def-config', taskStructureConfig.requestTypeDefConfig?.id]">{{taskStructureConfig.requestTypeDefConfig?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'task-structure-config/'+ taskStructureConfig.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

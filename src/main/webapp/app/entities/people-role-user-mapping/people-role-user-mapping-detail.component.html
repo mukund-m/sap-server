@@ -1,0 +1,37 @@
+
+<div *ngIf="peopleRoleUserMapping">
+    <h2><span>People Role User Mapping</span> {{peopleRoleUserMapping.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>User ID</span></dt>
+        <dd>
+            <span>{{peopleRoleUserMapping.userID}}</span>
+        </dd>
+        <dt><span>Request Type Def Config</span></dt>
+        <dd>
+            <div *ngIf="peopleRoleUserMapping.requestTypeDefConfig">
+                <a [routerLink]="['/request-type-def-config', peopleRoleUserMapping.requestTypeDefConfig?.id]">{{peopleRoleUserMapping.requestTypeDefConfig?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>People Role</span></dt>
+        <dd>
+            <div *ngIf="peopleRoleUserMapping.peopleRole">
+                <a [routerLink]="['/people-role', peopleRoleUserMapping.peopleRole?.id]">{{peopleRoleUserMapping.peopleRole?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'people-role-user-mapping/'+ peopleRoleUserMapping.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

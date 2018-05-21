@@ -1,0 +1,31 @@
+
+<div *ngIf="peopleRole">
+    <h2><span>People Role</span> {{peopleRole.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Role Name</span></dt>
+        <dd>
+            <span>{{peopleRole.roleName}}</span>
+        </dd>
+        <dt><span>Request Type Def Config</span></dt>
+        <dd>
+            <div *ngIf="peopleRole.requestTypeDefConfig">
+                <a [routerLink]="['/request-type-def-config', peopleRole.requestTypeDefConfig?.id]">{{peopleRole.requestTypeDefConfig?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'people-role/'+ peopleRole.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

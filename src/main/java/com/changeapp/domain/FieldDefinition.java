@@ -41,10 +41,15 @@ public class FieldDefinition implements Serializable {
 
     @OneToMany(mappedBy = "fieldDefinition")
     @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ReuestDefinition> definitions = new HashSet<>();
 
     @ManyToOne
     private DefinitionConfig definition;
+
+    @OneToMany(mappedBy = "fieldDefinition")
+    
+    private Set<FieldChoiceDefinition> choices = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -155,6 +160,31 @@ public class FieldDefinition implements Serializable {
 
     public void setDefinition(DefinitionConfig definitionConfig) {
         this.definition = definitionConfig;
+    }
+
+    public Set<FieldChoiceDefinition> getChoices() {
+        return choices;
+    }
+
+    public FieldDefinition choices(Set<FieldChoiceDefinition> fieldChoiceDefinitions) {
+        this.choices = fieldChoiceDefinitions;
+        return this;
+    }
+
+    public FieldDefinition addChoices(FieldChoiceDefinition fieldChoiceDefinition) {
+        this.choices.add(fieldChoiceDefinition);
+        fieldChoiceDefinition.setFieldDefinition(this);
+        return this;
+    }
+
+    public FieldDefinition removeChoices(FieldChoiceDefinition fieldChoiceDefinition) {
+        this.choices.remove(fieldChoiceDefinition);
+        fieldChoiceDefinition.setFieldDefinition(null);
+        return this;
+    }
+
+    public void setChoices(Set<FieldChoiceDefinition> fieldChoiceDefinitions) {
+        this.choices = fieldChoiceDefinitions;
     }
 
     @Override

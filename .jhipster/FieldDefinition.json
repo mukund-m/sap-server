@@ -12,6 +12,12 @@
             "relationshipName": "definition",
             "otherEntityName": "definitionConfig",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "choices",
+            "otherEntityName": "fieldChoiceDefinition",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "fieldDefinition"
         }
     ],
     "fields": [
@@ -37,8 +43,8 @@
         }
     ],
     "changelogDate": "20180308190933",
-    "entityTableName": "field_definition",
     "dto": "no",
-    "pagination": "no",
-    "service": "serviceImpl"
+    "service": "serviceImpl",
+    "entityTableName": "field_definition",
+    "pagination": "no"
 }

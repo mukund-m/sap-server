@@ -1,0 +1,35 @@
+
+<div *ngIf="fieldChoiceDefinition">
+    <h2><span>Field Choice Definition</span> {{fieldChoiceDefinition.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Key</span></dt>
+        <dd>
+            <span>{{fieldChoiceDefinition.key}}</span>
+        </dd>
+        <dt><span>Value</span></dt>
+        <dd>
+            <span>{{fieldChoiceDefinition.value}}</span>
+        </dd>
+        <dt><span>Field Definition</span></dt>
+        <dd>
+            <div *ngIf="fieldChoiceDefinition.fieldDefinition">
+                <a [routerLink]="['/field-definition', fieldChoiceDefinition.fieldDefinition?.id]">{{fieldChoiceDefinition.fieldDefinition?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'field-choice-definition/'+ fieldChoiceDefinition.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
